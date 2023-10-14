@@ -8,6 +8,8 @@ class Game:
         self.screen_width, self.screen_height = pygame.display.get_surface().get_size()
         self.player = Player(10,screen)
         self.turn_count = 1
+        self.sunx = 100
+        self.suny = 20
 
 
     def handle_events(self, event):
@@ -25,7 +27,13 @@ class Game:
                 if end_turn_button_rect.collidepoint(mouse_x, mouse_y):
                     # The mouse click occurred within the "End Turn" button
                     print("End Turn")
-                    self.turn_count += 1
+                    if self.turn_count < 10:
+                        self.turn_count += 1
+                        self.sunx +=200
+                        if self.turn_count < 3 and self.turn_count > 7:
+                            self.suny = 0
+                        else:
+                            self.suny = 20
         #add function to handle end turn button click
         # Handle game-specific events
         pass
@@ -41,12 +49,12 @@ class Game:
         self.screen.fill(black)
 
         # Draw stars in the night sky
-        for _ in range(100):
+        for _ in range(150):
             x = random.randint(0, self.screen_width)
             y = random.randint(0, self.screen_height)
-            pygame.draw.circle(self.screen, white, (x, y), 2)
+            pygame.draw.circle(self.screen, white, (x, y), 5)
 
-        moon_fn = r"C:\Users\o.a.reinhart\Desktop\HACKWASHU\HACKWASHUGAME\data\moon.png"  # Replace with the path to your image
+        moon_fn = r"data\moon.png"  # Replace with the path to your image
         moon = pygame.image.load(moon_fn)
         moon = pygame.transform.scale(moon, (self.screen_width, self.screen_height))
         self.screen.blit(moon, (0, 0))
@@ -63,6 +71,8 @@ class Game:
         self.screen.blit(turn_counter_text, (self.screen_width - 300, 10))
 
         self.player.draw()
+
+        self.screen.blit(pygame.transform.scale(pygame.image.load('data/sun.png'),(150,150)),(self.sunx,self.suny))
         pygame.display.flip()
 
 
