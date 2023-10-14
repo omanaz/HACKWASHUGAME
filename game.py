@@ -9,7 +9,8 @@ class Game:
         self.screen_width, self.screen_height = pygame.display.get_surface().get_size()
         self.player = Player(10,screen)
         self.turn_count = 1
-        self.sunx = 100
+        self.water_count = 3
+        self.sunx = 190
         self.suny = 30
 
 
@@ -30,13 +31,16 @@ class Game:
                     print("End Turn")
                     self.turn_count += 1
                     if self.turn_count <= 10:
-                        
-                        self.sunx +=200
+                        self.water_count = 3
+                        self.sunx +=190
                         if self.turn_count > 3 and self.turn_count < 7:
                             self.suny = 0
                         else:
                             self.suny = 30
                 if self.turn_count == 11:
+                    self.turn_count = 0
+                    self.sunx = 150
+                    self.suny = 30
                     return True
         #add function to handle end turn button click
         # Handle game-specific events
@@ -77,6 +81,8 @@ class Game:
         self.player.draw()
 
         self.screen.blit(pygame.transform.scale(pygame.image.load('data/sun.png'),(150,150)),(self.sunx,self.suny))
+        self.screen.blit(pygame.transform.scale(pygame.image.load('data/water.png'),(150,150)),(10,10))
+        self.screen.blit(pygame.font.Font(None,60).render(str(self.water_count), True, white),(75,85))
         pygame.display.flip()
 
 
