@@ -10,7 +10,7 @@ class Game:
         self.screen_height = 720
 
         start_time = time.time()
-        cur_time = start_time()
+        # cur_time = start_time()
 
     def handle_events(self, event):
         
@@ -42,8 +42,8 @@ class Game:
 
         # Draw stars in the night sky
         for _ in range(50):
-            x = random.randint(0, self.screen_width*2)
-            y = random.randint(0, self.screen_height*2)
+            x = random.randint(0, self.screen_width)
+            y = random.randint(0, self.screen_height)
             pygame.draw.circle(self.screen, white, (x, y), 2)
       
 

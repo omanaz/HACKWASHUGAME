@@ -27,7 +27,7 @@ while running:
     if event_return:
         if event_return == "game":
             current_state = game
-            game.scene()
+            game.set_scene()
             # state_name = 'game'
             pass
         elif event_return == "settings":
