@@ -8,6 +8,7 @@ class Game:
         self.screen = screen
         self.screen_width, self.screen_height = pygame.display.get_surface().get_size()
 
+
     def handle_events(self, event):
         
         # Handle game-specific events
@@ -25,7 +26,6 @@ class Game:
         #pygame.display.update()
 
     def set_scene(self):
-        #draw stars 
         black = (0,0,0)
         white = (255,255,255)
         gray = (0,0,100)
@@ -36,7 +36,7 @@ class Game:
         self.screen.fill(black)
 
         # Draw stars in the night sky
-        for _ in range(50):
+        for _ in range(100):
             x = random.randint(0, self.screen_width)
             y = random.randint(0, self.screen_height)
             pygame.draw.circle(self.screen, white, (x, y), 2)
@@ -46,7 +46,6 @@ class Game:
         moon = pygame.transform.scale(moon, (self.screen_width, self.screen_height))
         self.screen.blit(moon, (0, 0))
         pygame.display.flip()
-
 
     def next_state(self):
         # Determine if the state should change

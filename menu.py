@@ -3,6 +3,7 @@ import pygame
 class Menu:
     def __init__(self, screen):
         self.screen = screen
+        font_path = 
         self.font = pygame.font.Font(None, 36)
         self.button_x = 100
         self.button_y = 100
@@ -10,6 +11,7 @@ class Menu:
         self.button_height = 50
         self.button_color = (255, 0, 0)  # Red color for the button
         self.button_list = ['New Game', 'Settings', 'Exit Game', 'Instructions', 'Shop']
+
 
     def handle_events(self, event):
         # Handle menu-specific events
