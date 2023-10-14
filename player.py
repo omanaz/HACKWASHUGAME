@@ -16,9 +16,9 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
         self.hole = pygame.image.load(r'data\watered.png')
-        self.planted_hole = pygame.image.load(r"data\planted_hole.xcf")
-        self.hole = pygame.transform.scale(self.hole, (500, 250))
-        self.planted_hole = pygame.transform.scale(self.planted_hole, (500, 250))
+        self.planted_hole = pygame.image.load(r"data\planted.png")
+        self.hole = pygame.transform.scale(self.hole, (100, 100))
+        self.planted_hole = pygame.transform.scale(self.planted_hole, (100, 100))
         self.hole_list = []
         self.planted_hole_list = []
 
@@ -44,10 +44,10 @@ class Player(pygame.sprite.Sprite):
     def plant(self, keys):
         #have the character dig holes
         if keys[pygame.K_RETURN]:
-            self.hole_list.append([self.x-100,self.y])
+            self.hole_list.append([self.x+100,self.y+10])
             
-        if (keys[pygame.K_RSHIFT] or keys[pygame.K_LSHIFT]) and self.x-100 in [i[0] for i in self.hole_list]:
-            self.planted_hole_list.append([self.x-100,self.y])
+        if (keys[pygame.K_RSHIFT] or keys[pygame.K_LSHIFT]) and self.x+100 in [i[0] for i in self.hole_list]:
+            self.planted_hole_list.append([self.x+100,self.y+10])
         else: 
             print(self.hole_list)
             print(self.x-100)
