@@ -9,7 +9,7 @@ class Game:
         self.player = Player(10,screen)
         self.turn_count = 1
         self.sunx = 100
-        self.suny = 20
+        self.suny = 30
 
 
     def handle_events(self, event):
@@ -27,16 +27,19 @@ class Game:
                 if end_turn_button_rect.collidepoint(mouse_x, mouse_y):
                     # The mouse click occurred within the "End Turn" button
                     print("End Turn")
-                    if self.turn_count < 10:
-                        self.turn_count += 1
+                    self.turn_count += 1
+                    if self.turn_count <= 10:
+                        
                         self.sunx +=200
-                        if self.turn_count < 3 and self.turn_count > 7:
+                        if self.turn_count > 3 and self.turn_count < 7:
                             self.suny = 0
                         else:
-                            self.suny = 20
+                            self.suny = 30
+                if self.turn_count == 11:
+                    return True
         #add function to handle end turn button click
         # Handle game-specific events
-        pass
+        return False
     def update(self):
         self.player.update()
     

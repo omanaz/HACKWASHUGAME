@@ -23,8 +23,10 @@ while running:
             running = False
         
         if state_name == 'game':
-            game.handle_events(event)
-            
+            game_over = game.handle_events(event)
+            if game_over:
+                current_state = menu
+                state_name = 'menu'
         else:
             event_return = current_state.handle_events(event)
 
