@@ -9,7 +9,6 @@ class Game:
         self.player = Player(10,screen)
 
 
-
     def handle_events(self, event):
         self.player.move(event)
         # Handle game-specific events
