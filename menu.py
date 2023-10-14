@@ -3,7 +3,7 @@ import pygame
 class Menu:
     def __init__(self, screen):
         self.screen = screen
-        self.surface.fill(51, 0, 102)
+        #self.surface.fill(51, 0, 102)
         self.screen_width, self.screen_height = pygame.display.get_surface().get_size()
         font_path = r'C:\Users\o.a.reinhart\Desktop\HACKWASHU\HACKWASHUGAME\data\LycheeSoda.ttf'
         self.font = pygame.font.Font(font_path, 36)

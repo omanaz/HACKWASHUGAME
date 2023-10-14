@@ -12,8 +12,15 @@ class Player(pygame.sprite.Sprite):
         self.y = 300
         self.screen = screen
 
-        self.image = pygame.image.load(r'C:\Users\olove\Desktop\hackwashu\data\sprite.png')
+        self.image = pygame.image.load(r'C:\Users\o.a.reinhart\Desktop\HACKWASHU\HACKWASHUGAME\data\sprite.png')
         self.rect = self.image.get_rect()
+
+        self.hole = pygame.image.load(r'C:\Users\o.a.reinhart\Desktop\HACKWASHU\HACKWASHUGAME\data\hole.xcf')
+        self.planted_hole = pygame.image.load(r"C:\Users\o.a.reinhart\Desktop\HACKWASHU\HACKWASHUGAME\data\planted_hole.xcf")
+        self.hole = pygame.transform.scale(self.hole, (500, 250))
+        self.planted_hole = pygame.transform.scale(self.planted_hole, (500, 250))
+        self.hole_list = []
+        self.planted_hole_list = []
 
     def move(self,keys):
         if keys[pygame.K_LEFT]:
@@ -34,13 +41,18 @@ class Player(pygame.sprite.Sprite):
         print(self.rect.x,self.rect.y,self.x)
         pygame.display.flip()
 
-    def dig(self):
+    def plant(self, keys):
         #have the character dig holes
         if keys[pygame.K_RETURN]:
+            self.hole_list.append([self.x-100,self.y])
             
+        if (keys[pygame.K_RSHIFT] or keys[pygame.K_LSHIFT]):
+            self.planted_hole_list.append([self.x-500,self.y])
 
     def draw(self):
         self.screen.blit(self.image, self.rect)
+        for h in self.hole_list: self.screen.blit(self.hole, h)
+        for ph in self.planted_hole_list: self.screen.blit(self.planted_hole, ph)
 
 
 

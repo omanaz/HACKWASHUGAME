@@ -11,10 +11,12 @@ class Game:
 
     def handle_events(self, event):
         self.player.move(event)
+        self.player.plant(event)
         # Handle game-specific events
         pass
     def update(self):
         self.player.update()
+
         pass
     def draw(self):
         # Draw the game-specific elements
@@ -31,7 +33,7 @@ class Game:
             y = random.randint(0, self.screen_height)
             pygame.draw.circle(self.screen, white, (x, y), 2)
 
-        moon_fn = r"C:\Users\olove\Desktop\hackwashu\data\moon.png"  # Replace with the path to your image
+        moon_fn = r"C:\Users\o.a.reinhart\Desktop\HACKWASHU\HACKWASHUGAME\data\moon.png"  # Replace with the path to your image
         moon = pygame.image.load(moon_fn)
         moon = pygame.transform.scale(moon, (self.screen_width, self.screen_height))
         self.screen.blit(moon, (0, 0))
