@@ -34,7 +34,10 @@ class Player(pygame.sprite.Sprite):
         print(self.rect.x,self.rect.y,self.x)
         pygame.display.flip()
 
-
+    def dig(self):
+        #have the character dig holes
+        if keys[pygame.K_RETURN]:
+            
 
     def draw(self):
         self.screen.blit(self.image, self.rect)
