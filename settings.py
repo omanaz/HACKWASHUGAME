@@ -1,5 +1,6 @@
 import pygame
 import pygame_gui
+from pygame_gui.elements import UIButton
 
 class Settings:
     def __init__(self, screen):
@@ -8,12 +9,15 @@ class Settings:
         self.clock = pygame.time.Clock()
         self.slider_value = 0.5  # Initial slider value
 
+        button_rect = pygame.Rect(100, 100, 100, 40)  # Define the button's position and size
+        self.button = UIButton(button_rect, 'Menu', self.ui_manager)  # Create the button
+
         # Create a slider element
-        slider_rect = pygame.Rect(100, 100, 200, 20)
+        slider_rect = pygame.Rect(100, 200, 200, 20)
         self.slider = pygame_gui.elements.UIHorizontalSlider(slider_rect, self.slider_value, (0.0, 1.0), self.ui_manager)
 
 
-        value_label_rect = pygame.Rect(100, 70, 200, 20)
+        value_label_rect = pygame.Rect(100, 175, 200, 20)
         self.value_label = pygame_gui.elements.UILabel(value_label_rect, str(self.slider_value), self.ui_manager)
 
 
@@ -22,6 +26,9 @@ class Settings:
         if event.type == pygame.QUIT:
             pygame.quit()
         self.ui_manager.process_events(event)
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            if self.button.rect.collidepoint(event.pos):
+                return 'menu'
 
     def update(self):
         # Update settings-specific logic
