@@ -3,10 +3,29 @@ import pygame
 class Menu:
     def __init__(self, screen):
         self.screen = screen
+        self.font = pygame.font.Font(None, 36)
+        self.button_x = 100
+        self.button_y = 100
+        self.button_width = 200
+        self.button_height = 50
+        self.button_color = (255, 0, 0)  # Red color for the button
+        self.button_list = ['New Game', 'Settings', 'Exit Game', 'Instructions']
 
     def handle_events(self, event):
         # Handle menu-specific events
-        pass
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:  # Check for left mouse button click
+                mouse_x, mouse_y = event.pos
+                for i, button_text in enumerate(self.button_list):
+                    button_rect = pygame.Rect(self.button_x, self.button_y + 100 * i, self.button_width, self.button_height)
+                    if button_rect.collidepoint(mouse_x, mouse_y):
+                        if button_text == 'New Game':
+                            return "game"  # Transition to the game state
+                        elif button_text == 'Settings':
+                            return "settings"  # Transition to the settings state
+                        elif button_text == 'Exit Game':
+                            pygame.quit()
+                            return None
 
     def update(self):
         # Update menu-specific logic
@@ -14,25 +33,12 @@ class Menu:
 
     def draw(self):
         # Draw the menu-specific elements
-        # Define button parameters
         self.screen.fill((0, 0, 128))  # Navy background color
 
-        button_x = 100
-        button_y = 100
-        button_width = 200
-        button_height = 50
-        button_color = (255, 0, 0)  # Red color for the button
-        font = pygame.font.Font(None, 36)
-        button_list = ['New Game', 'Settings', 'Exit Game', 'Instructions']
-        for i, button_text in enumerate(button_list):
-            button_rect = pygame.draw.rect(self.screen, button_color, (button_x, button_y + 100 * i, button_width, button_height))
-            text = font.render(button_text, True, (255, 255, 255))
-            self.screen.blit(text, (button_x + 25, button_y + 100 * i))
-
-        # Check for button click
-        mouse_x, mouse_y = pygame.mouse.get_pos()
-        if button_rect.collidepoint(mouse_x, mouse_y) and pygame.mouse.get_pressed()[0]:  # Left mouse button clicked
-            print(f"Button Clicked: {button_text}")
+        for i, button_text in enumerate(self.button_list):
+            button_rect = pygame.draw.rect(self.screen, self.button_color, (self.button_x, self.button_y + 100 * i, self.button_width, self.button_height))
+            text = self.font.render(button_text, True, (255, 255, 255))
+            self.screen.blit(text, (self.button_x + 25, self.button_y + 100 * i))
 
     def next_state(self):
         # Determine if the state should change
