@@ -15,8 +15,9 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load(r'data\sprite.png')
         self.rect = self.image.get_rect()
 
-        self.hole = pygame.image.load(r'data\watered.png')
-        self.planted_hole = pygame.image.load(r"data\planted_hole.xcf")
+        self.hole = pygame.image.load(r'data\hole.png')
+        self.planted_hole = pygame.image.load(r"data\planted_hole.png")
+        self.water = pygame.image.load(r"data\watered.png")
         self.hole = pygame.transform.scale(self.hole, (500, 250))
         self.planted_hole = pygame.transform.scale(self.planted_hole, (500, 250))
         self.water = pygame.transform.scale(self.water, (500, 250))
@@ -53,12 +54,14 @@ class Player(pygame.sprite.Sprite):
 
         if keys[pygame.K_w]:
             self.watered_list.append([self.x-100, self.y])
+        #add function to harvest
+        # add function to fertilize
 
     def draw(self):
         self.screen.blit(self.image, self.rect)
+        for w in self.watered_list: self.screen.blit(self.water, w)
         for h in self.hole_list: self.screen.blit(self.hole, h)
         for ph in self.planted_hole_list: self.screen.blit(self.planted_hole, ph)
-        for w in self.watered_list: self.screen.blit(self.water, w)
 
 
 
