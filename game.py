@@ -21,8 +21,19 @@ class Game:
         pass
     def draw(self):
         # Draw the game-specific elements
-        # Draw the game-specific elements
-        cur_time = time.time()
+        # Draw some craters on the moon's surface
+        black = (0,0,0)
+        white = (255,255,255)
+
+        pygame.draw.circle(self.screen, black, (200, 400), 50)
+        pygame.draw.circle(self.screen, black, (500, 300), 70)
+        pygame.draw.circle(self.screen, black, (700, 500), 60)
+
+        # Update the screen
+        #pygame.display.update()
+
+    def set_scene(self):
+        #draw stars 
         black = (0,0,0)
         white = (255,255,255)
 
@@ -34,16 +45,7 @@ class Game:
             x = random.randint(0, self.screen_width*2)
             y = random.randint(0, self.screen_height*2)
             pygame.draw.circle(self.screen, white, (x, y), 2)
-
-        # Draw some craters on the moon's surface
-        pygame.draw.circle(self.screen, black, (200, 400), 50)
-        pygame.draw.circle(self.screen, black, (500, 300), 70)
-        pygame.draw.circle(self.screen, black, (700, 500), 60)
-
-
-        # Update the screen
-        #pygame.display.update()
-
+      
 
     def next_state(self):
         # Determine if the state should change
