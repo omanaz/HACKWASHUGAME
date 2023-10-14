@@ -12,12 +12,11 @@ class Player(pygame.sprite.Sprite):
         self.y = 300
         self.screen = screen
 
-        self.image = pygame.image.load(r'C:\Users\o.a.reinhart\Desktop\HACKWASHU\HACKWASHUGAME\data\sprite.png')
+        self.image = pygame.image.load(r'data\sprite.png')
         self.rect = self.image.get_rect()
 
-        self.hole = pygame.image.load(r'C:\Users\o.a.reinhart\Desktop\HACKWASHU\HACKWASHUGAME\data\hole.xcf')
-        self.planted_hole = pygame.image.load(r"C:\Users\o.a.reinhart\Desktop\HACKWASHU\HACKWASHUGAME\data\planted_hole.xcf")
-        self.water = pygame.image.load(r'C:\Users\o.a.reinhart\Desktop\HACKWASHU\HACKWASHUGAME\data\watered.png')        
+        self.hole = pygame.image.load(r'data\watered.png')
+        self.planted_hole = pygame.image.load(r"data\planted_hole.xcf")
         self.hole = pygame.transform.scale(self.hole, (500, 250))
         self.planted_hole = pygame.transform.scale(self.planted_hole, (500, 250))
         self.water = pygame.transform.scale(self.water, (500, 250))
