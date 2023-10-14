@@ -22,19 +22,23 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         
-    event_return = current_state.handle_events(event)
+    if state_name == 'game':
+        game_events = pygame.key.get_pressed()
+        game.handle_events(game_events)
+    else:
+        event_return = current_state.handle_events(event)
 
-    if event_return:
-        if event_return == "game":
-            current_state = game
-            game.set_scene()
-            # state_name = 'game'
-            pass
-        elif event_return == "settings":
-            current_state = settings
-            # state_name = 'settings'
-        elif event_return =='menu':
-            current_state = menu
+        if event_return:
+            if event_return == "game":
+                current_state = game
+                game.draw()
+                state_name = 'game'
+                pass
+            elif event_return == "settings":
+                current_state = settings
+                # state_name = 'settings'
+            elif event_return =='menu':
+                current_state = menu
 
 
     current_state.update()
