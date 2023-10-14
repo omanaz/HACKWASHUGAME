@@ -8,8 +8,8 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, speed,screen):
         super().__init__()
         self.speed = speed
-        self.x = 100
-        self.y = 100
+        self.x = 300
+        self.y = 300
         self.screen = screen
 
         self.image = pygame.image.load(r'C:\Users\olove\Desktop\hackwashu\data\sprite.png')

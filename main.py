@@ -36,7 +36,6 @@ while running:
                 pass
             elif event_return == "settings":
                 current_state = settings
-                # state_name = 'settings'
             elif event_return =='menu':
                 current_state = menu
 
