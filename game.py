@@ -14,9 +14,10 @@ class Game:
 
         # if event.type == pygame.KEYDOWN:
         #     self.player.move(event)
-        self.player.plant(event)
+
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Check if the mouse click occurred within the "End Turn" button
+
             if event.button == 1:  # Left mouse button
                 mouse_x, mouse_y = pygame.mouse.get_pos()
                 end_turn_button_rect = pygame.Rect(self.screen_width - 150, 10, 140, 40)
@@ -30,7 +31,7 @@ class Game:
         pass
     def update(self):
         self.player.update()
-
+    
         pass
     def draw(self):#, turn_count):
         # Draw the game-specific elements

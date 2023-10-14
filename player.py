@@ -46,8 +46,11 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_RETURN]:
             self.hole_list.append([self.x-100,self.y])
             
-        if (keys[pygame.K_RSHIFT] or keys[pygame.K_LSHIFT]):
-            self.planted_hole_list.append([self.x-500,self.y])
+        if (keys[pygame.K_RSHIFT] or keys[pygame.K_LSHIFT]) and self.x-100 in [i[0] for i in self.hole_list]:
+            self.planted_hole_list.append([self.x-100,self.y])
+        else: 
+            print(self.hole_list)
+            print(self.x-100)
 
     def draw(self):
         self.screen.blit(self.image, self.rect)

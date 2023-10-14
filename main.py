@@ -41,6 +41,7 @@ while running:
     if state_name == 'game':
         keys = pygame.key.get_pressed()  # Get the current keyboard state
         game.player.move(keys)
+        game.player.plant(keys)
 
     current_state.update()
     current_state.draw()
