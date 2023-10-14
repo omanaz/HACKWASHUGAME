@@ -12,7 +12,7 @@ running = True
 # game = Game(screen)
 settings = Settings(screen)
 current_state = Menu(screen)
-
+state_name = 'menu'
 
 
 while running:
@@ -20,14 +20,19 @@ while running:
     for event in events:
         if event.type == pygame.QUIT:
             running = False
-        state_transition = current_state.handle_events(event)
-        if state_transition:
-            print('click')
-            if state_transition == "game":
-                # current_state = game
-                pass
-            elif state_transition == "settings":
-                current_state = settings
+        
+    event_return = current_state.handle_events(event)
+
+    if state_name == 'menu':
+            if event_return:
+                if event_return == "game":
+                    # current_state = game
+                    state_name = 'game'
+                    pass
+                elif event_return == "settings":
+                    current_state = settings
+                    state_name = 'settings'
+
     current_state.update()
     current_state.draw()
     # Draw the buttons and check for clicks
