@@ -44,13 +44,12 @@ class Player(pygame.sprite.Sprite):
     def plant(self, keys):
         #have the character dig holes
         if keys[pygame.K_RETURN]:
-            self.hole_list.append([self.x+100,self.y+10])
+            # if self.x+100 not in [i[0] for i in self.hole_list]and self.y+10 not in [i[1] for i in self.hole_list]:
+            self.hole_list.append((self.x+100,self.y+10))   
             
-        if (keys[pygame.K_RSHIFT] or keys[pygame.K_LSHIFT]) and self.x+100 in [i[0] for i in self.hole_list]:
-            self.planted_hole_list.append([self.x+100,self.y+10])
-        else: 
-            print(self.hole_list)
-            print(self.x-100)
+        if (keys[pygame.K_RSHIFT] or keys[pygame.K_LSHIFT]) and (self.x+100,self.y+10) in self.hole_list:
+            self.planted_hole_list.append((self.x+100,self.y+10))
+        
 
     def draw(self):
         self.screen.blit(self.image, self.rect)
