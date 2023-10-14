@@ -1,5 +1,5 @@
 import pygame
-# from game import Game
+from game import Game
 from menu import Menu
 from settings import Settings
 
@@ -9,7 +9,7 @@ clock = pygame.time.Clock()
 running = True
 
 # Initialize the different game states
-# game = Game(screen)
+game = Game(screen)
 settings = Settings(screen)
 current_state = Menu(screen)
 state_name = 'menu'
@@ -26,7 +26,7 @@ while running:
     if state_name == 'menu':
             if event_return:
                 if event_return == "game":
-                    # current_state = game
+                    current_state = game
                     state_name = 'game'
                     pass
                 elif event_return == "settings":
