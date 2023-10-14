@@ -9,9 +9,6 @@ class Game:
         self.screen_width = 1280
         self.screen_height = 720
 
-        start_time = time.time()
-        # cur_time = start_time()
-
     def handle_events(self, event):
         
         # Handle game-specific events
@@ -25,10 +22,6 @@ class Game:
         black = (0,0,0)
         white = (255,255,255)
 
-        pygame.draw.circle(self.screen, black, (200, 400), 50)
-        pygame.draw.circle(self.screen, black, (500, 300), 70)
-        pygame.draw.circle(self.screen, black, (700, 500), 60)
-
         # Update the screen
         #pygame.display.update()
 
@@ -36,6 +29,9 @@ class Game:
         #draw stars 
         black = (0,0,0)
         white = (255,255,255)
+        gray = (0,0,100)
+        curve_height = 700
+        rect = (0, 700, 1280, 600)
 
         pygame.display.flip()
         self.screen.fill(black)
@@ -45,7 +41,13 @@ class Game:
             x = random.randint(0, self.screen_width)
             y = random.randint(0, self.screen_height)
             pygame.draw.circle(self.screen, white, (x, y), 2)
-      
+
+        moon_fn = "background.jpg"  # Replace with the path to your image
+        moon = pygame.image.load(BACKGROUND_IMAGE)
+        moon = pygame.transform.scale(background, (self.screen_width, self.screen_height))
+        
+       # screen.blit(background, (0, 0))
+
 
     def next_state(self):
         # Determine if the state should change
