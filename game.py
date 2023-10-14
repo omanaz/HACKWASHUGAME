@@ -8,7 +8,6 @@ class Game:
         self.screen = screen
         self.screen_width, self.screen_height = pygame.display.get_surface().get_size()
 
-
     def handle_events(self, event):
         
         # Handle game-specific events

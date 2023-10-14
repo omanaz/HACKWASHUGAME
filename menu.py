@@ -3,12 +3,14 @@ import pygame
 class Menu:
     def __init__(self, screen):
         self.screen = screen
-        font_path = 
-        self.font = pygame.font.Font(None, 36)
-        self.button_x = 100
+        self.screen_color = (51, 0, 102)
+        self.screen_width, self.screen_height = pygame.display.get_surface().get_size()
+        font_path = r'C:\Users\o.a.reinhart\Desktop\HACKWASHU\HACKWASHUGAME\data\LycheeSoda.ttf'
+        self.font = pygame.font.Font(font_path, 36)
+        self.button_x = self.screen_width/2
         self.button_y = 100
-        self.button_width = 200
-        self.button_height = 50
+        self.button_width = 300
+        self.button_height = 75
         self.button_color = (255, 0, 0)  # Red color for the button
         self.button_list = ['New Game', 'Settings', 'Exit Game', 'Instructions', 'Shop']
 
