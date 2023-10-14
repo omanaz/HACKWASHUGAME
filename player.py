@@ -17,10 +17,13 @@ class Player(pygame.sprite.Sprite):
 
         self.hole = pygame.image.load(r'C:\Users\o.a.reinhart\Desktop\HACKWASHU\HACKWASHUGAME\data\hole.xcf')
         self.planted_hole = pygame.image.load(r"C:\Users\o.a.reinhart\Desktop\HACKWASHU\HACKWASHUGAME\data\planted_hole.xcf")
+        self.water = pygame.image.load(r'C:\Users\o.a.reinhart\Desktop\HACKWASHU\HACKWASHUGAME\data\watered.png')        
         self.hole = pygame.transform.scale(self.hole, (500, 250))
         self.planted_hole = pygame.transform.scale(self.planted_hole, (500, 250))
+        self.water = pygame.transform.scale(self.water, (500, 250))
         self.hole_list = []
         self.planted_hole_list = []
+        self.watered_list = []
 
     def move(self,keys):
         if keys[pygame.K_LEFT]:
@@ -48,14 +51,15 @@ class Player(pygame.sprite.Sprite):
             
         if (keys[pygame.K_RSHIFT] or keys[pygame.K_LSHIFT]) and self.x-100 in [i[0] for i in self.hole_list]:
             self.planted_hole_list.append([self.x-100,self.y])
-        else: 
-            print(self.hole_list)
-            print(self.x-100)
+
+        if keys[pygame.K_w]:
+            self.watered_list.append([self.x-100, self.y])
 
     def draw(self):
         self.screen.blit(self.image, self.rect)
         for h in self.hole_list: self.screen.blit(self.hole, h)
         for ph in self.planted_hole_list: self.screen.blit(self.planted_hole, ph)
+        for w in self.watered_list: self.screen.blit(self.water, w)
 
 
 
