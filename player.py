@@ -28,11 +28,11 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.menu_rects = []
         self.hole = pygame.image.load(r'data\hole.png')
-        self.planted_hole = pygame.image.load(r"data\sprout.png")
+        # self.planted_hole = pygame.image.load(r"data\sprout.png")
         self.water = pygame.image.load(r"data\watered.png")
         self.water = pygame.transform.scale(self.water, (100, 100))
         self.hole = pygame.transform.scale(self.hole, (100, 100))
-        self.planted_hole = pygame.transform.scale(self.planted_hole, (100, 100))
+        # self.planted_hole = pygame.transform.scale(self.planted_hole, (100, 100))
         self.hole_list = []
         self.planted_hole_list = []
         self.watered_list = []
@@ -117,11 +117,14 @@ class Player(pygame.sprite.Sprite):
         if self.menu_active:
             self.draw_menu()
         for h in self.hole_list: self.screen.blit(self.hole, h)
-        for ph in self.planted_hole_list: 
-            # print(self.planted_hole_list[0].check_dead())
-            # print(self.plants[0].check_dead())
-            if not ph.check_dead():
-                self.screen.blit(self.planted_hole, (ph.x,ph.y))
+        # for ph in self.planted_hole_list: 
+        #     # print(self.planted_hole_list[0].check_dead())
+        #     # print(self.plants[0].check_dead())
+        #     if ph.get_growth_stage()>1:
+        #         continue
+        #     if ph.check_dead():
+        #         continue
+            # self.screen.blit(self.planted_hole, (ph.x,ph.y))
             # else:
             #     print('nodead')
         for w in self.watered_list: self.screen.blit(self.water, w)
