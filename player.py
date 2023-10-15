@@ -28,7 +28,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.menu_rects = []
         self.hole = pygame.image.load(r'data\hole.png')
-        self.planted_hole = pygame.image.load(r"data\planted_hole.png")
+        self.planted_hole = pygame.image.load(r"data\sprout.png")
         self.water = pygame.image.load(r"data\watered.png")
         self.water = pygame.transform.scale(self.water, (100, 100))
         self.hole = pygame.transform.scale(self.hole, (100, 100))
