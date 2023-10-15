@@ -6,6 +6,7 @@ class GameOver:
     def __init__(self, screen, points):
         self.screen = screen
         self.screen_width, self.screen_height = pygame.display.get_surface().get_size()
+        self.ui_manager = pygame_gui.UIManager((self.screen_width, self.screen_height))
         self.points = points 
         font_path = r'data\LycheeSoda.ttf'
         self.font = pygame.font.Font(font_path, 50)
@@ -36,7 +37,8 @@ class GameOver:
 
     def update(self):
         # Update settings-specific logic
-        self.ui_manager.update(self.clock.tick(60) / 1000.0)
+        # self.ui_manager.update(self.clock.tick(60) / 1000.0)
+        pass
 
         
     def draw(self):

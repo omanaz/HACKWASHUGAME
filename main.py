@@ -29,14 +29,14 @@ while running:
             running = False
         
         if state_name == 'game':
-            game_over = game.handle_events(event)
+            game.handle_events(event)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_i:
                     menu_active = not menu_active
                     game.player.set_menu(menu_active)
-            if game_over:
-                current_state = menu
-                state_name = 'menu'
+            # if game_over:
+            #     current_state = menu
+            #     state_name = 'menu'
         else:
             current_state.handle_events(event)
     if state_name == 'game':
@@ -57,6 +57,8 @@ while running:
             current_state = settings
         elif current_state =='menu':
             current_state = menu
+        elif current_state == 'gameover':
+            current_state = game.get_gameover()
     # Draw the buttons and check for clicks
     
 

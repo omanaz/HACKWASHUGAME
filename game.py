@@ -53,7 +53,7 @@ class Game:
                         self.suny = 30
                         self.player.get_points()
                         # self.nstate = ''
-                        self.nstate = GameOver(self.screen, self.player.get_points())
+                        self.nstate = 'gameover'
                         return True
                 elif menu_button_rect.collidepoint(mouse_x,mouse_y):
                     self.nstate = 'menu'
@@ -125,3 +125,6 @@ class Game:
     def get_dig(self):
         self.dig_count = self.player.get_dig()
         return self.dig_count 
+
+    def get_gameover(self):
+        return GameOver(self.screen, self.player.get_points())

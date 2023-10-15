@@ -6,7 +6,7 @@ class Settings:
     def __init__(self, screen):
         self.screen = screen
         self.ui_manager = pygame_gui.UIManager((1280, 720))
-        self.clock = pygame.time.Clock()
+        # self.clock = pygame.time.Clock()
         self.slider_value = 0.5  # Initial slider value
         self.nstate = None
         button_rect = pygame.Rect(100, 100, 100, 40)  # Define the button's position and size
@@ -32,7 +32,7 @@ class Settings:
 
     def update(self):
         # Update settings-specific logic
-        self.ui_manager.update(self.clock.tick(60) / 1000.0)
+        # self.ui_manager.update(self.clock.tick(60) / 1000.0)
 
         # Get the current slider value
         self.slider_value = self.slider.get_current_value()
