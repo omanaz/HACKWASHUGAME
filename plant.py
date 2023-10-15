@@ -1,7 +1,7 @@
 import pygame
 
 class Plant:
-    def __init__(self, x, y, type, is_fertilized):
+    def __init__(self, x, y, type):
         self.x = x
         self.y = y
         self.health = 20
@@ -14,6 +14,7 @@ class Plant:
         self.rect.topleft = (x, y)
         self.age = 0 #age of the plant in turns 
         self.days_since_water = 0
+        self.is_fertilized = True
 
     def draw_health_bar(self, screen):
         # Calculate the width of the health bar based on the plant's health

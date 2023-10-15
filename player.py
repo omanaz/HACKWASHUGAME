@@ -1,5 +1,6 @@
 
 import pygame
+from plant import Plant
 # from settings import *
 # from support import *
 
@@ -25,6 +26,8 @@ class Player(pygame.sprite.Sprite):
         self.hole_list = []
         self.planted_hole_list = []
         self.watered_list = []
+        self.plants = []
+        self.selected_plant = 'potato'
 
     def move(self,keys):
         if keys[pygame.K_LEFT]:
@@ -43,6 +46,8 @@ class Player(pygame.sprite.Sprite):
         self.rect.x = self.x
         self.rect.y = self.y
         pygame.display.flip()
+        for plant in self.plants:
+            plant.draw_health_bar(self.screen)
 
     def plant(self, keys):
         #have the character dig holes
@@ -53,6 +58,9 @@ class Player(pygame.sprite.Sprite):
             
         if (keys[pygame.K_RSHIFT] or keys[pygame.K_LSHIFT]) and (self.x+100,self.y+10) in self.hole_list:
             self.planted_hole_list.append((self.x+100,self.y+10))
+            # call plant 
+            self.plants.append(Plant(self.x+100,self.y+10, self.selected_plant))
+
        
         if keys[pygame.K_w]:
             self.watered_list.append([self.x-100, self.y])
@@ -88,6 +96,7 @@ class Player(pygame.sprite.Sprite):
                 self.screen.blit(text_surface, text_rect)
 
                 menu_rects.append(button_rect)
+                #fix in menu add selected
 
 
     def set_menu(self,setting):
@@ -100,3 +109,5 @@ class Player(pygame.sprite.Sprite):
         return self.water_count
     def get_dig(self):
         return self.dig_count 
+    def get_plants(self):
+        return self.plants
