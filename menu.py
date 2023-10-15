@@ -13,6 +13,7 @@ class Menu:
         self.button_height = 75
         self.button_color = (255, 0, 0)  # Red color for the button
         self.button_list = ['New Game', 'Settings', 'Exit Game', 'Instructions', 'Shop']
+        self.nstate = None
 
 
     def handle_events(self, event):
@@ -24,13 +25,17 @@ class Menu:
                     button_rect = pygame.Rect(self.button_x, self.button_y + 100 * i, self.button_width, self.button_height)
                     if button_rect.collidepoint(mouse_x, mouse_y):
                         if button_text == 'New Game':
-                            return "game"  # Transition to the game state
+                            self.nstate = 'game'
+                            # return "game"  # Transition to the game state
                         elif button_text == 'Settings':
-                            return "settings"  # Transition to the settings state
+                            self.nstate = 'settings'
+                            # return "settings"  # Transition to the settings state
                         elif button_text == 'Instructions':
-                            return "instructions"  # Transition to the settings state
+                            self.nstate = 'instructions'
+                            # return "instructions"  # Transition to the settings state
                         elif button_text == 'Shop':
-                            return "shop"  # Transition to the settings state
+                            self.nstate = 'shop'
+                            # return "shop"  # Transition to the settings state
                         elif button_text == 'Exit Game':
                             pygame.quit()
                             return None
@@ -50,4 +55,5 @@ class Menu:
 
     def next_state(self):
         # Determine if the state should change
-        return None
+        print(self.nstate)
+        return self.nstate

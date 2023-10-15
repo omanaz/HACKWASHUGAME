@@ -1,6 +1,7 @@
 import pygame
 import random
 from player import Player
+# from game_over import Game_Over
 # from plant import Plant
 
 class Game:
@@ -15,6 +16,7 @@ class Game:
         self.suny = 30
         self.player.set_water(3)
         self.player.set_dig(2)
+        self.nstate = None
 
 
     def handle_events(self, event):
@@ -50,9 +52,12 @@ class Game:
                         self.sunx = 150
                         self.suny = 30
                         self.player.get_points()
+                        self.nstate = ''
+                        # self.nstate = Game_Over(self.screen, self.player.get_points())
                         return True
                 elif menu_button_rect.collidepoint(mouse_x,mouse_y):
-                    return 'menu'
+                    self.nstate = 'menu'
+                    # return 'menu'
                 else:
                     self.player.handle_click(mouse_x,mouse_y)
         #add function to handle end turn button click
@@ -110,8 +115,9 @@ class Game:
 
 
     def next_state(self):
+        
         # Determine if the state should change
-        return None
+        return self.nstate
 
     def get_water(self):
         self.water_count = self.player.get_water()

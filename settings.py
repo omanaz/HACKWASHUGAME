@@ -8,7 +8,7 @@ class Settings:
         self.ui_manager = pygame_gui.UIManager((1280, 720))
         self.clock = pygame.time.Clock()
         self.slider_value = 0.5  # Initial slider value
-
+        self.nstate = None
         button_rect = pygame.Rect(100, 100, 100, 40)  # Define the button's position and size
         self.button = UIButton(button_rect, 'Menu', self.ui_manager)  # Create the button
 
@@ -28,7 +28,7 @@ class Settings:
         self.ui_manager.process_events(event)
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if self.button.rect.collidepoint(event.pos):
-                return 'menu'
+                self.nstate = 'menu'
 
     def update(self):
         # Update settings-specific logic
@@ -47,7 +47,7 @@ class Settings:
 
     def next_state(self):
         # Determine if the state should change
-        return None
+        return self.nstate
 
     def get_volume(self):
         return self.slider_value
