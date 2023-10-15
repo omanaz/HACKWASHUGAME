@@ -36,7 +36,7 @@ while running:
             # if game_over:
             #     current_state = menu
             #     state_name = 'menu'
-        else:
+        elif current_state:
             current_state.handle_events(event)
     if type(current_state) == Game:
         keys = pygame.key.get_pressed()  # Get the current keyboard state
@@ -45,10 +45,11 @@ while running:
         
     current_state.update()
     current_state.draw()
-    if current_state.next_state():
-        current_state = current_state.next_state()
+    nstate = current_state.next_state()
+    if nstate:
+        current_state = nstate
         if current_state == "game":
-            current_state = Game(screen)
+            current_state = Game(screen, settings.get_sprite())
             current_state.draw()
             state_name = 'game'
             pass
@@ -58,6 +59,8 @@ while running:
             current_state = Menu(screen)
         elif type(current_state) == GameOver:
             pass
+        # else:
+        #     current_state = Menu(screen)
     # Draw the buttons and check for clicks
     
 
