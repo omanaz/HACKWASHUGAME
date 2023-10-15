@@ -6,9 +6,9 @@ from plant import Plant
 Plant_dict = {
     'potato' : 1,
     'carrot' : 2,
-    'spinach' : 0.5,
+    'spinach' : 5,
     'cabbage' : 2.5,
-    'broccoli' : 5,
+    'broccoli' : .05,
     'corn' : 3,
     'beet': 2,
     'pepper': 7,
