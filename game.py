@@ -1,7 +1,7 @@
 import pygame
 import random
 from player import Player
-from plant import Plant
+# from plant import Plant
 
 class Game:
     def __init__(self, screen):
@@ -10,8 +10,11 @@ class Game:
         self.player = Player(10,screen)
         self.turn_count = 1
         self.water_count = 3
+        self.dig_count = 2
         self.sunx = 190
         self.suny = 30
+        self.player.set_water(3)
+        self.player.set_dig(2)
 
 
     def handle_events(self, event):
@@ -34,7 +37,8 @@ class Game:
 
                     self.turn_count += 1
                     if self.turn_count <= 10:
-                        self.water_count = 3
+                        self.player.set_water(3)
+                        self.player.set_dig(2)
                         self.sunx +=190
                         if self.turn_count > 3 and self.turn_count < 7:
                             self.suny = 0
@@ -83,12 +87,23 @@ class Game:
 
         self.player.draw()
 
+        self.get_dig()
+        self.get_water()
         self.screen.blit(pygame.transform.scale(pygame.image.load('data/sun.png'),(150,150)),(self.sunx,self.suny))
         self.screen.blit(pygame.transform.scale(pygame.image.load('data/water.png'),(150,150)),(10,10))
-        self.screen.blit(pygame.font.Font(None,60).render(str(self.water_count), True, white),(75,85))
+        self.screen.blit(pygame.transform.scale(pygame.image.load('data/shovel.png'),(70,70)),(50,150))
+        self.screen.blit(pygame.font.Font(None,60).render(str(self.water_count), True, white),(20,75))
+        self.screen.blit(pygame.font.Font(None,60).render(str(self.dig_count), True, white),(20,170))
         pygame.display.flip()
 
 
     def next_state(self):
         # Determine if the state should change
         return None
+
+    def get_water(self):
+        self.water_count = self.player.get_water()
+        return self.water_count 
+    def get_dig(self):
+        self.dig_count = self.player.get_dig()
+        return self.dig_count 
