@@ -14,6 +14,7 @@ running = True
 settings = Settings(screen)
 current_state = Menu(screen)
 menu_active = False
+matt = 'matt'
 
 pygame.mixer.init()
 pygame.mixer.music.load("data//SONG.mp3")
@@ -48,7 +49,7 @@ while running:
     if current_state.next_state():
         current_state = current_state.next_state()
         if current_state == "game":
-            current_state = Game(screen)
+            current_state = Game(screen, matt)
             current_state.draw()
             state_name = 'game'
             pass

@@ -15,7 +15,7 @@ Plant_dict = {
 }
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, speed,screen):
+    def __init__(self, speed,screen, matt):
         super().__init__()
         self.water_count = 0
         self.dig_count = 0
@@ -24,7 +24,7 @@ class Player(pygame.sprite.Sprite):
         self.y = 300
         self.screen = screen
         self.menu_active = False
-        self.image = pygame.image.load(r'data\sprite.png')
+        self.image = pygame.image.load(f'data\\{matt}.png')
         self.rect = self.image.get_rect()
         self.menu_rects = []
         self.hole = pygame.image.load(r'data\hole.png')
@@ -153,7 +153,7 @@ class Player(pygame.sprite.Sprite):
                 color = (0, 128, 255)
                 if item == self.selected_plant:
                     color =  (255, 0, 0)
-                button_rect = pygame.Rect(self.x + 150 + col_x, self.y + 10 + (100 * i), 80, 80)
+                button_rect = pygame.Rect(self.x + 150 + col_x, self.y + 10 + (100 * i), 100, 80)
                 pygame.draw.rect(self.screen, color, button_rect)  # Button color
 
                 font = pygame.font.Font(None, 36)

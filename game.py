@@ -5,10 +5,10 @@ from game_over import GameOver
 # from plant import Plant
 
 class Game:
-    def __init__(self, screen):
+    def __init__(self, screen,matt):
         self.screen = screen
         self.screen_width, self.screen_height = pygame.display.get_surface().get_size()
-        self.player = Player(10,screen)
+        self.player = Player(10,screen,matt)
         self.turn_count = 1
         self.water_count = 3
         self.dig_count = 2
