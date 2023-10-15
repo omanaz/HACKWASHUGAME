@@ -36,9 +36,8 @@ class Plant:
         pygame.draw.rect(screen, bar_color, (bar_x, bar_y, bar_width, 5))
 
     def update(self):
-        # Update the appearance of the plant based on its growth stage and health
-        
-        self.is_ready_for_harvest = self.growth_stage == 2
+        # Update the appearance of the plant based on its growth stage and health        
+
         if self.rate <3:
             agecut = math.ceil(self.rate)
         else:
@@ -46,16 +45,7 @@ class Plant:
         if self.health > 40 + 10*self.rate and self.age %agecut ==0:
             self.grow()
 
-        # if self.plant_type == 'potato':
-        #     if self.health > 50:
-        #         self.grow()
-        # elif self.plant_type == 'carrot':
-        #     if (self.age % 2 ==0) and self.health > 70:
-        #         self.grow()
-        # # Check for growth based on plant type and health
-        # else: 
-        #     if self.age % 3 == 0 and self.health > 80:  # Plants grow every 3 turns
-        #         self.grow()
+        self.is_ready_for_harvest = self.growth_stage == 2
 
         self.age += 1
 
@@ -70,22 +60,6 @@ class Plant:
 
     def update_health(self, amount=0):
         decrease_rate = 10 *self.rate
-        # if self.is_fertilized:
-        #     if (self.plant_type == 'potato' and self.days_since_water == 6):
-        #         decrease_rate = 5
-        #     elif (self.plant_type == 'carrot' and self.days_since_water == 4):
-        #         decrease_rate = 15
-        #     elif (self.plant_type == 'spinach' and self.days_since_water == 2):
-        #         decrease_rate = 25
-        # else:
-        #     if (self.plant_type == 'potato' and self.days_since_water == 3):
-        #         decrease_rate = 10
-        #     elif (self.plant_type == 'carrot' and self.days_since_water == 2):
-        #         decrease_rate = 30
-        #     elif (self.plant_type == 'spinach' and self.days_since_water == 1):
-        #         decrease_rate = 50
-
-                
 
         health_increase = amount
         self.health += health_increase
@@ -95,6 +69,11 @@ class Plant:
             self.health = 0
         elif self.health > 100:
             self.health = 100
+
+        if self.health == 0: 
+            self.is_dead == True #death
+            self.image = (0,0)
+
 
     def grow(self):
         if self.growth_stage < 2:
@@ -110,6 +89,6 @@ class Plant:
         return self.plant_points
 
     def water(self):
-        self.days_since_water = 0
-            #clear plant and grow spot out of picture
+        self.days_since_water = 0         
+         #clear plant and grow spot out of picture
  
