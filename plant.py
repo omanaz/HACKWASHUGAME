@@ -27,7 +27,8 @@ class Plant:
     def draw_health_bar(self, screen):
         # Calculate the width of the health bar based on the plant's health
         bar_width = int(40 * (self.health / 100))
-        bar_color = (255 - int(255 * (self.health / 100)), int(255 * (self.health / 100)), 0)  # Red to Green
+        # bar_color = (255 - int(255 * (self.health / 100)), int(255 * (self.health / 100)), 0)  # Red to Green
+        bar_color = (255 - min(254,int(255 * (self.health / 100))), min(255,int(255 * (self.health / 100))), 0)  # Red to Green
 
         # Calculate the position of the health bar
         bar_x = self.x
@@ -61,12 +62,11 @@ class Plant:
             self.screen.blit(self.image, self.rect)
 
     def update_health(self, amount=0):
-        decrease_rate = 10 *self.rate
+        decrease_rate = 10 *self.rate * self.days_since_water
 
         health_increase = amount
         self.health += health_increase
         self.health -= decrease_rate
-        # print(self.health)
         if self.health < 0:
             self.health = 0
         elif self.health > 100:
@@ -91,7 +91,8 @@ class Plant:
         return self.plant_points
 
     def water(self):
-        self.days_since_water = 0         
+        self.days_since_water = 0
+        self.health += 10         
          #clear plant and grow spot out of picture
 
     def check_dead(self):

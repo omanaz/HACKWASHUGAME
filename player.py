@@ -95,6 +95,7 @@ class Player(pygame.sprite.Sprite):
                     if self.x+100 > x-100 and self.x+100 < x+100:
                         if self.y+10 > y-100 and self.y+10 < y+100:
                             plant.water()
+                            print('waterd')
 
             # for i in self.hole_list:
             #     x,y = i
@@ -117,12 +118,12 @@ class Player(pygame.sprite.Sprite):
             self.draw_menu()
         for h in self.hole_list: self.screen.blit(self.hole, h)
         for ph in self.planted_hole_list: 
-            print(self.planted_hole_list[0].check_dead())
-            print(self.plants[0].check_dead())
+            # print(self.planted_hole_list[0].check_dead())
+            # print(self.plants[0].check_dead())
             if not ph.check_dead():
                 self.screen.blit(self.planted_hole, (ph.x,ph.y))
-            else:
-                print('nodead')
+            # else:
+            #     print('nodead')
         for w in self.watered_list: self.screen.blit(self.water, w)
 
 
