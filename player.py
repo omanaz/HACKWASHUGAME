@@ -79,9 +79,10 @@ class Player(pygame.sprite.Sprite):
                 self.dig_count -=1
             
         if (keys[pygame.K_RSHIFT] or keys[pygame.K_LSHIFT]) and (self.x+100,self.y+10) in self.hole_list:
-            self.planted_hole_list.append((self.x+100,self.y+10))
+            new_plant = Plant(self.x+100,self.y+10, self.screen, self.selected_plant, Plant_dict)
+            self.planted_hole_list.append(new_plant)
             # call plant 
-            self.plants.append(Plant(self.x+100,self.y+10, self.screen, self.selected_plant, Plant_dict))
+            self.plants.append(new_plant)
             self.hole_list.remove((self.x+100,self.y+10))
 
        
@@ -115,7 +116,13 @@ class Player(pygame.sprite.Sprite):
         if self.menu_active:
             self.draw_menu()
         for h in self.hole_list: self.screen.blit(self.hole, h)
-        for ph in self.planted_hole_list: self.screen.blit(self.planted_hole, ph)
+        for ph in self.planted_hole_list: 
+            print(self.planted_hole_list[0].check_dead())
+            print(self.plants[0].check_dead())
+            if not ph.check_dead():
+                self.screen.blit(self.planted_hole, (ph.x,ph.y))
+            else:
+                print('nodead')
         for w in self.watered_list: self.screen.blit(self.water, w)
 
 

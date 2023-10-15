@@ -66,7 +66,7 @@ class Plant:
         health_increase = amount
         self.health += health_increase
         self.health -= decrease_rate
-
+        # print(self.health)
         if self.health < 0:
             self.health = 0
         elif self.health > 100:
@@ -93,4 +93,10 @@ class Plant:
     def water(self):
         self.days_since_water = 0         
          #clear plant and grow spot out of picture
+
+    def check_dead(self):
+        # print(self.is_dead)
+        if self.health == 0: 
+            return True
+        return self.is_dead
  
