@@ -1,10 +1,21 @@
 import pygame
 
+Plant_dict = {
+    'potato' : 1,
+    'carrot' : 2,
+    'spinach' : 0.5,
+    'cabbage' : 2.5,
+    'kale' : 5,
+    'corn' : 3,
+}
+
 class Plant:
-    def __init__(self, x, y, type):
+    def __init__(self, x, y, screen, plant_type):
         self.x = x
         self.y = y
+        self.screen = screen
         self.health = 20
+        self.rate = Plant_dict[plant_type]
         self.growth_stage = 0  # Growth stage (0: Seedling, 1: Young, 2: Mature)
         self.water_level = 0  # Water level
         self.is_ready_for_harvest = False
@@ -14,7 +25,9 @@ class Plant:
         self.rect.topleft = (x, y)
         self.age = 0 #age of the plant in turns 
         self.days_since_water = 0
-        self.is_fertilized = True
+        # self.is_fertilized = True
+        self.plant_type = plant_type
+        self.plant_points = 0
 
     def draw_health_bar(self, screen):
         # Calculate the width of the health bar based on the plant's health
@@ -32,42 +45,47 @@ class Plant:
         # Update the appearance of the plant based on its growth stage and health
         
         self.is_ready_for_harvest = self.growth_stage == 2
+        # agecut 123 >3 = 3
+        if self.health > 40 + 10*self.rate and self.age %2 ==0:
+            self.grow()
 
-        if self.plant_type == 'potato':
-            if self.health > 50:
-                self.grow()
-        elif self.plant_type == 'carrot':
-            if (self.age % 2 ==0) and self.health > 70:
-                self.grow()
-        # Check for growth based on plant type and health
-        else: 
-            if self.age % 3 == 0 and self.health > 80:  # Plants grow every 3 turns
-                self.grow()
+        # if self.plant_type == 'potato':
+        #     if self.health > 50:
+        #         self.grow()
+        # elif self.plant_type == 'carrot':
+        #     if (self.age % 2 ==0) and self.health > 70:
+        #         self.grow()
+        # # Check for growth based on plant type and health
+        # else: 
+        #     if self.age % 3 == 0 and self.health > 80:  # Plants grow every 3 turns
+        #         self.grow()
 
         self.age += 1
 
 
         # Check if the plant is ready for harvest (e.g., at a mature growth stage)
         self.is_ready_for_harvest = self.growth_stage == 2
+        self.update_health()
 
-    def draw(self, screen):
-        screen.blit(self.image, self.rect)
+    def draw(self):
+        self.screen.blit(self.image, self.rect)
 
-    def update_health(self, amount):
-        if self.is_fertilized:
-            if (self.plant_type == 'potato' and self.days_since_water == 6):
-                decrease_rate = 5
-            elif (self.plant_type == 'carrot' and self.days_since_water == 4):
-                decrease_rate = 15
-            elif (self.plant_type == 'spinach' and self.days_since_water == 2):
-                decrease_rate = 25
-        else:
-            if (self.plant_type == 'potato' and self.days_since_water == 3):
-                decrease_rate = 10
-            elif (self.plant_type == 'carrot' and self.days_since_water == 2):
-                decrease_rate = 30
-            elif (self.plant_type == 'spinach' and self.days_since_water == 1):
-                decrease_rate = 50
+    def update_health(self, amount=0):
+        decrease_rate = 10 *self.rate
+        # if self.is_fertilized:
+        #     if (self.plant_type == 'potato' and self.days_since_water == 6):
+        #         decrease_rate = 5
+        #     elif (self.plant_type == 'carrot' and self.days_since_water == 4):
+        #         decrease_rate = 15
+        #     elif (self.plant_type == 'spinach' and self.days_since_water == 2):
+        #         decrease_rate = 25
+        # else:
+        #     if (self.plant_type == 'potato' and self.days_since_water == 3):
+        #         decrease_rate = 10
+        #     elif (self.plant_type == 'carrot' and self.days_since_water == 2):
+        #         decrease_rate = 30
+        #     elif (self.plant_type == 'spinach' and self.days_since_water == 1):
+        #         decrease_rate = 50
 
                 
 
@@ -87,12 +105,11 @@ class Plant:
     def harvest(self):
         if self.is_ready_for_harvest:
             # Perform harvesting action (e.g., increase player's resources)
-            if self.plant_type == 'potato':
-                points += 5
-            elif self.plant_type == 'carrot':
-                points += 20
-            elif self.plant_type == 'spinach':
-                points += 40
+            points = 5 *self.rate
+
+
+    def get_points(self):
+        return self.plant_points
 
             #clear plant and grow spot out of picture
  

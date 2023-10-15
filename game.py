@@ -42,6 +42,7 @@ class Game:
                         self.sunx +=190
                         for plant in self.player.get_plants():
                             plant.update()
+                            
                         if self.turn_count > 3 and self.turn_count < 7:
                             self.suny = 0
                         else:
