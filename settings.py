@@ -47,7 +47,7 @@ class Settings:
         # Draw the settings-specific elements
         self.screen.fill((0, 0, 128))  # Navy background color
         self.ui_manager.draw_ui(self.screen)
-        sprite_names = ['matt', 'sprite', 'john']
+        sprite_names = ['matt', 'sprite', 'cat', 'bear']
 
         # Define the position and size for the buttons
         button_width, button_height = 100, 40
