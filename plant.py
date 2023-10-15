@@ -1,4 +1,5 @@
 import pygame
+import math
 
 Plant_dict = {
     'potato' : 1,
@@ -7,6 +8,8 @@ Plant_dict = {
     'cabbage' : 2.5,
     'kale' : 5,
     'corn' : 3,
+    'beet': 2,
+    'pepper': 7,
 }
 
 class Plant:
@@ -45,8 +48,11 @@ class Plant:
         # Update the appearance of the plant based on its growth stage and health
         
         self.is_ready_for_harvest = self.growth_stage == 2
-        # agecut 123 >3 = 3
-        if self.health > 40 + 10*self.rate and self.age %2 ==0:
+        if self.rate <3:
+            agecut = math.ceil(self.rate)
+        else:
+            agecut = 3
+        if self.health > 40 + 10*self.rate and self.age %agecut ==0:
             self.grow()
 
         # if self.plant_type == 'potato':

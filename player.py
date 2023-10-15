@@ -55,8 +55,15 @@ class Player(pygame.sprite.Sprite):
         # stop from planting or digging when no digs left
         if keys[pygame.K_RETURN]:
             # if self.x+100 not in [i[0] for i in self.hole_list]and self.y+10 not in [i[1] for i in self.hole_list]:
-            self.hole_list.append((self.x+100,self.y+10))   
-            self.dig_count -=1
+            for i in self.hole_list:
+                x,y = i
+                if self.x+100 > x-100 and self.x+100 < x+100:
+                    if self.y+10 > y-100 and self.y+10 < y+100:
+                        return
+
+            if self.dig_count >0:
+                self.hole_list.append((self.x+100,self.y+10))   
+                self.dig_count -=1
             
         if (keys[pygame.K_RSHIFT] or keys[pygame.K_LSHIFT]) and (self.x+100,self.y+10) in self.hole_list:
             self.planted_hole_list.append((self.x+100,self.y+10))
@@ -65,8 +72,9 @@ class Player(pygame.sprite.Sprite):
 
        
         if keys[pygame.K_w]:
-            self.watered_list.append((self.x+100,self.y+10))
-            self.water_count -=1
+            if self.water_count >0:
+                self.watered_list.append((self.x+100,self.y+10))
+                self.water_count -=1
         #add function to harvest
         # add function to fertilize
 
