@@ -28,7 +28,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         
-        if state_name == 'game':
+        if type(current_state) == Game:
             game.handle_events(event)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_i:

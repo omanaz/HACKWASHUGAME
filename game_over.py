@@ -17,10 +17,12 @@ class GameOver:
         self.button_y = 400
         self.button_color = (255, 0, 0)  # Red color for the button
         self.button_list = ['New Game','Menu','Exit Game']
+        self.nstate = None
 
     def handle_events(self, event):
         
         # Handle menu-specific events
+        print('sdafdsa')
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:  # Check for left mouse button click
                 mouse_x, mouse_y = event.pos
@@ -28,9 +30,9 @@ class GameOver:
                     button_rect = pygame.Rect(self.button_x, self.button_y + 100 * i, self.button_width, self.button_height)
                     if button_rect.collidepoint(mouse_x, mouse_y):
                         if button_text == 'New Game':
-                            return "game"  # Transition to the game state
+                            self.nstate = 'game'
                         elif button_text == 'Menu':
-                            return "menu"  # Transition to the settings state
+                            self.nstate = 'menu'
                         elif button_text == 'Exit Game':
                             pygame.quit()
                             return None
@@ -65,7 +67,7 @@ class GameOver:
         pygame.display.flip()
     def next_state(self):
         # Determine if the state should change
-        return None
+        return self.nstate
 
     def get_volume(self):
         return self.slider_value
