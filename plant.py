@@ -12,7 +12,7 @@ class Plant:
         self.rate = Plant_dict[plant_type]
         self.growth_stage = 0  # Growth stage (0: Seedling, 1: Young, 2: Mature)
         self.water_level = 0  # Water level
-        self.is_ready_for_harvest = False
+        # self.is_ready_for_harvest = False
         self.image = pygame.transform.scale(pygame.image.load('data\\plants\\' +str(plant_type)+'.png'), (40, 40))
         # self.image.fill((0, 255, 0))  # Green color for a healthy plant
         self.rect = self.image.get_rect()
@@ -56,7 +56,9 @@ class Plant:
 
 
         # Check if the plant is ready for harvest (e.g., at a mature growth stage)
-        self.is_ready_for_harvest = self.growth_stage == 2
+        if self.growth_stage ==2:
+            self.harvest()
+        # self.is_ready_for_harvest = self.growth_stage == 2
         self.update_health()
 
     def draw(self):
@@ -91,10 +93,10 @@ class Plant:
             self.growth_stage += 1
 
     def harvest(self):
-        if self.is_ready_for_harvest:
+        # if self.is_ready_for_harvest:
             # Perform harvesting action (e.g., increase player's resources)
-            self.plant_points = 5 *self.rate
-            self.image = (0,0)
+        self.plant_points = 5 *self.rate
+        self.image = (0,0)
 
     def get_points(self):
         return self.plant_points
