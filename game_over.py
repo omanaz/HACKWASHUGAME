@@ -6,14 +6,13 @@ class GameOver:
     def __init__(self, screen, points):
         self.screen = screen
         self.screen_width, self.screen_height = pygame.display.get_surface().get_size()
-        self.ui_manager = pygame_gui.UIManager((self.screen_width, self.screen_height))
         self.points = points 
         font_path = r'data\LycheeSoda.ttf'
         self.font = pygame.font.Font(font_path, 50)
         self.button_width = 300
         self.button_height = 75
         self.button_x = self.screen_width/2 - (self.button_width/2)
-        self.button_y = 100
+        self.button_y = 1000
         self.button_color = (255, 0, 0)  # Red color for the button
         self.button_list = ['New Game','Menu','Exit Game']
 
@@ -37,22 +36,22 @@ class GameOver:
 
     def update(self):
         # Update settings-specific logic
-        # self.ui_manager.update(self.clock.tick(60) / 1000.0)
         pass
-
         
     def draw(self):
         # Draw the menu-specific elements
         white = (255,255,255)
         game_over_text = self.font.render("Game Over", True, white)
+        points = sel.font.render("Score:"+str(points), True, white)
 
         text_x = self.screen_width // 2 - game_over_text.get_width() // 2
-        text_y = self.screen_height // 2 - game_over_text.get_height() // 2
+        text_y = 500
 
         self.screen.fill((0, 0, 128))  # Navy background color
         self.ui_manager.draw_ui(self.screen)
         # Blit the "Game Over" text onto the screen
         self.screen.blit(game_over_text, (text_x, text_y))
+        self.screen.blit(points, (text_x, text_y-30))
 
         for i, button_text in enumerate(self.button_list):
             button_rect = pygame.draw.rect(self.screen, self.button_color, (self.button_x, self.button_y + 100 * i, self.button_width, self.button_height))
