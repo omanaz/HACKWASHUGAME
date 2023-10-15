@@ -18,7 +18,7 @@ class Plant:
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
         self.age = 0 #age of the plant in turns 
-        self.days_since_water = 0
+        self.days_since_water = 1
         # self.is_fertilized = True
         self.plant_type = plant_type
         self.plant_points = 0
@@ -106,7 +106,6 @@ class Plant:
     def water(self):
         self.days_since_water = 0
         self.health += 10         
-         #clear plant and grow spot out of picture
 
     def check_dead(self):
         # print(self.is_dead)
