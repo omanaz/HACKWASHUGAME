@@ -13,7 +13,7 @@ class Plant:
         self.growth_stage = 0  # Growth stage (0: Seedling, 1: Young, 2: Mature)
         self.water_level = 0  # Water level
         self.is_ready_for_harvest = False
-        self.image = pygame.transform.scale(pygame.image.load('plants\\data\\' +str(plant_type)+'.png'), (40, 40))
+        self.image = pygame.transform.scale(pygame.image.load('data\\plants\\' +str(plant_type)+'.png'), (40, 40))
         # self.image.fill((0, 255, 0))  # Green color for a healthy plant
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
