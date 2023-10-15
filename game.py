@@ -47,11 +47,13 @@ class Game:
                             self.suny = 0
                         else:
                             self.suny = 30
-                if self.turn_count == 11:
-                    self.turn_count = 0
-                    self.sunx = 150
-                    self.suny = 30
-                    return True
+                    if self.turn_count == 11:
+                        self.turn_count = 0
+                        self.sunx = 150
+                        self.suny = 30
+                        return True
+                else:
+                    self.player.handle_click(mouse_x,mouse_y)
         #add function to handle end turn button click
         # Handle game-specific events
         return False

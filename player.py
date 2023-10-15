@@ -3,7 +3,16 @@ import pygame
 from plant import Plant
 # from settings import *
 # from support import *
-
+Plant_dict = {
+    'potato' : 1,
+    'carrot' : 2,
+    'spinach' : 0.5,
+    'cabbage' : 2.5,
+    'kale' : 5,
+    'corn' : 3,
+    'beet': 2,
+    'pepper': 7,
+}
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, speed,screen):
@@ -17,7 +26,7 @@ class Player(pygame.sprite.Sprite):
         self.menu_active = False
         self.image = pygame.image.load(r'data\sprite.png')
         self.rect = self.image.get_rect()
-
+        self.menu_rects = []
         self.hole = pygame.image.load(r'data\hole.png')
         self.planted_hole = pygame.image.load(r"data\planted_hole.png")
         self.water = pygame.image.load(r"data\watered.png")
@@ -29,6 +38,8 @@ class Player(pygame.sprite.Sprite):
         self.watered_list = []
         self.plants = []
         self.selected_plant = 'potato'
+        self.firstcol = []
+        self.seccol = []
 
     def move(self,keys):
         if keys[pygame.K_LEFT]:
@@ -70,7 +81,7 @@ class Player(pygame.sprite.Sprite):
         if (keys[pygame.K_RSHIFT] or keys[pygame.K_LSHIFT]) and (self.x+100,self.y+10) in self.hole_list:
             self.planted_hole_list.append((self.x+100,self.y+10))
             # call plant 
-            self.plants.append(Plant(self.x+100,self.y+10, self.screen, self.selected_plant))
+            self.plants.append(Plant(self.x+100,self.y+10, self.screen, self.selected_plant, Plant_dict))
 
        
         if keys[pygame.K_w]:
@@ -104,13 +115,25 @@ class Player(pygame.sprite.Sprite):
             return
 
         # Define the menu background rectangle
-        menu_items = [['1', '2', '3','4'],['1', '2', '3','4']]
+        values = list(Plant_dict.keys())  # Get all values and convert to a list
+
+        # Calculate the midpoint to split the values
+        midpoint = len(values) // 2
+
+        # Split the values into two separate lists
+        self.firstcol = values[:midpoint]
+        self.seccol = values[midpoint:]
+
+        menu_items = [self.firstcol,self.seccol]
         menu_rects = []
         for i, col in enumerate(menu_items):
             col_x = i*150
             for i, item in enumerate(col):
+                color = (0, 128, 255)
+                if item == self.selected_plant:
+                    color =  (255, 0, 0)
                 button_rect = pygame.Rect(self.x + 150 + col_x, self.y + 10 + (100 * i), 80, 80)
-                pygame.draw.rect(self.screen, (0, 128, 255), button_rect)  # Button color
+                pygame.draw.rect(self.screen, color, button_rect)  # Button color
 
                 font = pygame.font.Font(None, 36)
                 text_surface = font.render(item, True, (255, 255, 255))
@@ -119,6 +142,17 @@ class Player(pygame.sprite.Sprite):
 
                 menu_rects.append(button_rect)
                 #fix in menu add selected
+        
+        self.menu_rects = menu_rects
+
+    def handle_click(self,mousex,mousey):
+        for i, button_rect in enumerate(self.menu_rects):
+            if button_rect.collidepoint(mousex, mousey):
+                # A button is clicked; set self.selected_plant to the corresponding item
+                if i < len(self.firstcol):
+                    self.selected_plant = self.firstcol[i]
+                else:
+                    self.selected_plant = self.seccol[i - len(self.firstcol)]
 
 
     def set_menu(self,setting):

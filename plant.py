@@ -1,19 +1,10 @@
 import pygame
 import math
 
-Plant_dict = {
-    'potato' : 1,
-    'carrot' : 2,
-    'spinach' : 0.5,
-    'cabbage' : 2.5,
-    'kale' : 5,
-    'corn' : 3,
-    'beet': 2,
-    'pepper': 7,
-}
 
 class Plant:
-    def __init__(self, x, y, screen, plant_type):
+    def __init__(self, x, y, screen, plant_type, Plant_dict):
+        self.plant_dict = Plant_dict
         self.x = x
         self.y = y
         self.screen = screen
@@ -22,7 +13,7 @@ class Plant:
         self.growth_stage = 0  # Growth stage (0: Seedling, 1: Young, 2: Mature)
         self.water_level = 0  # Water level
         self.is_ready_for_harvest = False
-        self.image = pygame.transform.scale(pygame.image.load('data\\' +str(plant_type)+'.png'), (40, 40))
+        self.image = pygame.transform.scale(pygame.image.load('plants\\data\\' +str(plant_type)+'.png'), (40, 40))
         # self.image.fill((0, 255, 0))  # Green color for a healthy plant
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
