@@ -38,18 +38,7 @@ while running:
                 current_state = menu
                 state_name = 'menu'
         else:
-            event_return = current_state.handle_events(event)
-
-            if event_return:
-                if event_return == "game":
-                    current_state = game
-                    game.draw()
-                    state_name = 'game'
-                    pass
-                elif event_return == "settings":
-                    current_state = settings
-                elif event_return =='menu':
-                    current_state = menu
+            current_state.handle_events(event)
     if state_name == 'game':
         keys = pygame.key.get_pressed()  # Get the current keyboard state
         game.player.move(keys)
@@ -57,6 +46,17 @@ while running:
         
     current_state.update()
     current_state.draw()
+    if current_state.next_state():
+        current_state = current_state.next_state()
+        if current_state == "game":
+            current_state = game
+            game.draw()
+            state_name = 'game'
+            pass
+        elif current_state == "settings":
+            current_state = settings
+        elif current_state =='menu':
+            current_state = menu
     # Draw the buttons and check for clicks
     
 
