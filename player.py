@@ -8,7 +8,7 @@ Plant_dict = {
     'carrot' : 2,
     'spinach' : 0.5,
     'cabbage' : 2.5,
-    'kale' : 5,
+    'broccoli' : 5,
     'corn' : 3,
     'beet': 2,
     'pepper': 7,
