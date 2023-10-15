@@ -31,7 +31,7 @@ class Instructions:
 
         # Create a "Lorem Ipsum" text surface
         in_text ="""
-        You are trapped on the moon and have to survive for ten days until you’re rescued.\n
+        You are trapped on the asteroid and have to survive for ten days until you’re rescued.\n
         Grow and harvest as many plants as possible under the planting and watering constraints. \n 
         Increase each plant’s chances of growing by adding water. Don’t wait too long to water each plant or they’ll die :( \n
         \n
