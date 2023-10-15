@@ -10,6 +10,7 @@ class Game:
         self.player = Player(10,screen)
         self.turn_count = 1
         self.water_count = 3
+        self.dig_count = 2
         self.sunx = 190
         self.suny = 30
 
@@ -32,6 +33,7 @@ class Game:
                     self.turn_count += 1
                     if self.turn_count <= 10:
                         self.water_count = 3
+                        self.dig_count = 2
                         self.sunx +=190
                         if self.turn_count > 3 and self.turn_count < 7:
                             self.suny = 0
@@ -82,7 +84,9 @@ class Game:
 
         self.screen.blit(pygame.transform.scale(pygame.image.load('data/sun.png'),(150,150)),(self.sunx,self.suny))
         self.screen.blit(pygame.transform.scale(pygame.image.load('data/water.png'),(150,150)),(10,10))
-        self.screen.blit(pygame.font.Font(None,60).render(str(self.water_count), True, white),(75,85))
+        self.screen.blit(pygame.transform.scale(pygame.image.load('data/shovel.png'),(70,70)),(50,150))
+        self.screen.blit(pygame.font.Font(None,60).render(str(self.water_count), True, white),(20,75))
+        self.screen.blit(pygame.font.Font(None,60).render(str(self.dig_count), True, white),(20,170))
         pygame.display.flip()
 
 
