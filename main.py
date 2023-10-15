@@ -16,7 +16,13 @@ current_state = Menu(screen)
 state_name = 'menu'
 menu_active = False
 
+pygame.mixer.init()
+pygame.mixer.music.load("data//SONG.mp3")
+pygame.mixer.music.play(-1)  # The "-1" argument makes the music loop indefinitely.
+
+
 while running:
+    pygame.mixer.music.set_volume(settings.get_volume())
     events = pygame.event.get()
     for event in events:
         if event.type == pygame.QUIT:

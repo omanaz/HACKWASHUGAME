@@ -35,10 +35,10 @@ class Settings:
         self.ui_manager.update(self.clock.tick(60) / 1000.0)
 
         # Get the current slider value
-        self.slider_value = self.slider.get_current_value()*100
+        self.slider_value = self.slider.get_current_value()
 
         # Update the value label with the current slider value
-        self.value_label.set_text(f"Volume: {self.slider_value:.1f}%")
+        self.value_label.set_text(f"Volume: {self.slider_value*100:.1f}%")
 
     def draw(self):
         # Draw the settings-specific elements
@@ -48,3 +48,6 @@ class Settings:
     def next_state(self):
         # Determine if the state should change
         return None
+
+    def get_volume(self):
+        return self.slider_value
