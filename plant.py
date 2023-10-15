@@ -22,8 +22,8 @@ class Plant:
         self.growth_stage = 0  # Growth stage (0: Seedling, 1: Young, 2: Mature)
         self.water_level = 0  # Water level
         self.is_ready_for_harvest = False
-        self.image = pygame.Surface((40, 60))
-        self.image.fill((0, 255, 0))  # Green color for a healthy plant
+        self.image = pygame.image.load(r'data\'+str(plant_type)'+'.png')
+        # self.image.fill((0, 255, 0))  # Green color for a healthy plant
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
         self.age = 0 #age of the plant in turns 
