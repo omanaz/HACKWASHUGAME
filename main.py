@@ -14,7 +14,7 @@ settings = Settings(screen)
 menu = Menu(screen)
 current_state = Menu(screen)
 state_name = 'menu'
-
+menu_active = False
 
 while running:
     events = pygame.event.get()
@@ -24,6 +24,10 @@ while running:
         
         if state_name == 'game':
             game_over = game.handle_events(event)
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_i:
+                    menu_active = not menu_active
+                    game.player.set_menu(menu_active)
             if game_over:
                 current_state = menu
                 state_name = 'menu'

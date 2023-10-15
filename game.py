@@ -1,7 +1,7 @@
 import pygame
 import random
 from player import Player
-from plant import Plant
+# from plant import Plant
 
 class Game:
     def __init__(self, screen):
