@@ -188,3 +188,10 @@ class Player(pygame.sprite.Sprite):
         return self.dig_count 
     def get_plants(self):
         return self.plants
+    
+        
+    def get_points(self):
+        sum = 0
+        for plant in self.plants:
+            sum += plant.get_points()
+        return sum

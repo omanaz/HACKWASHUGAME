@@ -49,6 +49,7 @@ class Game:
                         self.turn_count = 0
                         self.sunx = 150
                         self.suny = 30
+                        self.player.get_points()
                         return True
                 elif menu_button_rect.collidepoint(mouse_x,mouse_y):
                     return 'menu'
