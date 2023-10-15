@@ -120,8 +120,11 @@ class Player(pygame.sprite.Sprite):
         for ph in self.planted_hole_list: 
             # print(self.planted_hole_list[0].check_dead())
             # print(self.plants[0].check_dead())
-            if not ph.check_dead():
-                self.screen.blit(self.planted_hole, (ph.x,ph.y))
+            if ph.get_growth_stage()>1:
+                continue
+            if ph.check_dead():
+                continue
+            self.screen.blit(self.planted_hole, (ph.x,ph.y))
             # else:
             #     print('nodead')
         for w in self.watered_list: self.screen.blit(self.water, w)

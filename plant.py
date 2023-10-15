@@ -100,4 +100,6 @@ class Plant:
         if self.health == 0: 
             return True
         return self.is_dead
- 
+    
+    def get_growth_stage(self):
+        return self.growth_stage
