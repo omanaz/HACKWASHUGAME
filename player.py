@@ -82,6 +82,7 @@ class Player(pygame.sprite.Sprite):
             self.planted_hole_list.append((self.x+100,self.y+10))
             # call plant 
             self.plants.append(Plant(self.x+100,self.y+10, self.screen, self.selected_plant, Plant_dict))
+            self.hole_list.remove((self.x+100,self.y+10))
 
        
         if keys[pygame.K_w]:

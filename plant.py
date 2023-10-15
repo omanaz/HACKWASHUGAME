@@ -65,7 +65,8 @@ class Plant:
         self.update_health()
 
     def draw(self):
-        self.screen.blit(self.image, self.rect)
+        if self.growth_stage > 0:
+            self.screen.blit(self.image, self.rect)
 
     def update_health(self, amount=0):
         decrease_rate = 10 *self.rate
