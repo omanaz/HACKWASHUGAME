@@ -1,5 +1,5 @@
 import pygame
-
+from instructions import Instructions
 class Menu:
     def __init__(self, screen):
         self.screen = screen
@@ -31,7 +31,7 @@ class Menu:
                             self.nstate = 'settings'
                             # return "settings"  # Transition to the settings state
                         elif button_text == 'Instructions':
-                            self.nstate = 'instructions'
+                            self.nstate = Instructions(self.screen)
                             # return "instructions"  # Transition to the settings state
                         elif button_text == 'Shop':
                             self.nstate = 'shop'

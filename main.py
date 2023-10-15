@@ -12,9 +12,7 @@ running = True
 # Initialize the different game states
 # game = Game(screen)
 settings = Settings(screen)
-menu = Menu(screen)
 current_state = Menu(screen)
-state_name = 'menu'
 menu_active = False
 
 pygame.mixer.init()
@@ -57,7 +55,7 @@ while running:
         elif current_state == "settings":
             current_state = settings
         elif current_state =='menu':
-            current_state = menu
+            current_state = Menu(screen)
         elif type(current_state) == GameOver:
             pass
     # Draw the buttons and check for clicks
