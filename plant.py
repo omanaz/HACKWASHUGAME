@@ -84,7 +84,7 @@ class Plant:
     def harvest(self):
         if self.is_ready_for_harvest:
             # Perform harvesting action (e.g., increase player's resources)
-            points = 5 *self.rate
+            self.plant_points = 5 *self.rate
 
 
     def get_points(self):
