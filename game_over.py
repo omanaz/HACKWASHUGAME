@@ -18,6 +18,8 @@ class GameOver:
         self.button_color = (255, 0, 0)  # Red color for the button
         self.button_list = ['New Game','Menu','Exit Game']
         self.nstate = None
+        self.rocket = pygame.transform.scale(pygame.image.load('data\\rocket.png'), (600, 600))
+
 
     def handle_events(self, event):
         
@@ -45,7 +47,7 @@ class GameOver:
     def draw(self):
         # Draw the menu-specific elements
         white = (255,255,255)
-        game_over_text = self.font_go.render("Game Over", True, white)
+        game_over_text = self.font_go.render("You've Been Rescued!", True, white)
         points = self.font_go.render("Score:"+str(self.points), True, white)
 
         text_x = self.screen_width // 2 - game_over_text.get_width() // 2
@@ -57,6 +59,7 @@ class GameOver:
         # Blit the "Game Over" text onto the screen
         self.screen.blit(game_over_text, (text_x, text_y-50))
         self.screen.blit(points, (text_x, text_y+30))
+        self.screen.blit(self.rocket, (text_x-550, text_y+50))
 
         for i, button_text in enumerate(self.button_list):
             button_rect = pygame.draw.rect(self.screen, self.button_color, (self.button_x, self.button_y + 100 * i, self.button_width, self.button_height))
