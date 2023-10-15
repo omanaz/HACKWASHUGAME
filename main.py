@@ -2,6 +2,7 @@ import pygame
 from game import Game
 from menu import Menu
 from settings import Settings
+from game_over import GameOver
 
 pygame.init()
 screen = pygame.display.set_mode()
@@ -9,7 +10,7 @@ clock = pygame.time.Clock()
 running = True
 
 # Initialize the different game states
-game = Game(screen)
+# game = Game(screen)
 settings = Settings(screen)
 menu = Menu(screen)
 current_state = Menu(screen)
@@ -29,36 +30,36 @@ while running:
             running = False
         
         if type(current_state) == Game:
-            game.handle_events(event)
+            current_state.handle_events(event)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_i:
                     menu_active = not menu_active
-                    game.player.set_menu(menu_active)
+                    current_state.player.set_menu(menu_active)
             # if game_over:
             #     current_state = menu
             #     state_name = 'menu'
         else:
             current_state.handle_events(event)
-    if state_name == 'game':
+    if type(current_state) == Game:
         keys = pygame.key.get_pressed()  # Get the current keyboard state
-        game.player.move(keys)
-        game.player.plant(keys)
+        current_state.player.move(keys)
+        current_state.player.plant(keys)
         
     current_state.update()
     current_state.draw()
     if current_state.next_state():
         current_state = current_state.next_state()
         if current_state == "game":
-            current_state = game
-            game.draw()
+            current_state = Game(screen)
+            current_state.draw()
             state_name = 'game'
             pass
         elif current_state == "settings":
             current_state = settings
         elif current_state =='menu':
             current_state = menu
-        elif current_state == 'gameover':
-            current_state = game.get_gameover()
+        elif type(current_state) == GameOver:
+            pass
     # Draw the buttons and check for clicks
     
 
