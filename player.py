@@ -113,7 +113,8 @@ class Player(pygame.sprite.Sprite):
     def draw(self):
         self.screen.blit(self.image, self.rect)
         for plant in self.plants:
-            plant.draw()
+            if plant.growth_stage < 2:
+                plant.draw()
         if self.menu_active:
             self.draw_menu()
         for h in self.hole_list: self.screen.blit(self.hole, h)
