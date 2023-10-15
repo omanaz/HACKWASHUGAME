@@ -23,6 +23,8 @@ class Plant:
         self.plant_type = plant_type
         self.plant_points = 0
         self.is_dead = False 
+        self.drop = pygame.image.load(r'data\water.png')
+        self.drop = pygame.transform.scale(self.drop, (50, 50))
 
 
     def draw_health_bar(self, screen):
@@ -60,6 +62,8 @@ class Plant:
     def draw(self):
         if self.is_dead is False:
             self.draw_health_bar(self.screen)
+            if self.days_since_water == 0:
+                self.screen.blit(self.drop, self.rect)
             if self.growth_stage == 0:
                 # pygame.transform.scale(self.planted_hole, (100, 100))
                 self.screen.blit(pygame.transform.scale(pygame.image.load(r"data\sprout.png"), (100,100)), self.rect)
