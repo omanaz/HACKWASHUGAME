@@ -57,9 +57,13 @@ class Plant:
         self.update_health()
 
     def draw(self):
-        if (self.growth_stage > 1 and self.is_dead is False):
+        if self.is_dead is False:
             self.draw_health_bar(self.screen)
-            self.screen.blit(self.image, self.rect)
+            if self.growth_stage == 0:
+                # pygame.transform.scale(self.planted_hole, (100, 100))
+                self.screen.blit(pygame.transform.scale(pygame.image.load(r"data\sprout.png"), (100,100)), self.rect)
+            else:
+                self.screen.blit(self.image, self.rect)
 
     def update_health(self, amount=0):
         decrease_rate = 10 *self.rate * self.days_since_water
@@ -101,4 +105,5 @@ class Plant:
         return self.is_dead
     
     def get_growth_stage(self):
+        print(self.growth_stage)
         return self.growth_stage
