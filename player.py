@@ -7,6 +7,8 @@ import pygame
 class Player(pygame.sprite.Sprite):
     def __init__(self, speed,screen):
         super().__init__()
+        self.water_count = 0
+        self.dig_count = 0
         self.speed = speed
         self.x = 300
         self.y = 300
@@ -47,12 +49,14 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_RETURN]:
             # if self.x+100 not in [i[0] for i in self.hole_list]and self.y+10 not in [i[1] for i in self.hole_list]:
             self.hole_list.append((self.x+100,self.y+10))   
+            self.dig_count -=1
             
         if (keys[pygame.K_RSHIFT] or keys[pygame.K_LSHIFT]) and (self.x+100,self.y+10) in self.hole_list:
             self.planted_hole_list.append((self.x+100,self.y+10))
        
         if keys[pygame.K_w]:
             self.watered_list.append([self.x-100, self.y])
+            self.water_count -=1
         #add function to harvest
         # add function to fertilize
 
@@ -88,3 +92,11 @@ class Player(pygame.sprite.Sprite):
 
     def set_menu(self,setting):
         self.menu_active = setting
+    def set_water(self, water):
+        self.water_count = water
+    def set_dig(self, dig):
+        self.dig_count = dig
+    def get_water(self):
+        return self.water_count
+    def get_dig(self):
+        return self.dig_count 

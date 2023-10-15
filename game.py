@@ -13,6 +13,8 @@ class Game:
         self.dig_count = 2
         self.sunx = 190
         self.suny = 30
+        self.player.set_water(3)
+        self.player.set_dig(2)
 
 
     def handle_events(self, event):
@@ -32,8 +34,8 @@ class Game:
                     print("End Turn")
                     self.turn_count += 1
                     if self.turn_count <= 10:
-                        self.water_count = 3
-                        self.dig_count = 2
+                        self.player.set_water(3)
+                        self.player.set_dig(2)
                         self.sunx +=190
                         if self.turn_count > 3 and self.turn_count < 7:
                             self.suny = 0
@@ -82,6 +84,8 @@ class Game:
 
         self.player.draw()
 
+        self.get_dig()
+        self.get_water()
         self.screen.blit(pygame.transform.scale(pygame.image.load('data/sun.png'),(150,150)),(self.sunx,self.suny))
         self.screen.blit(pygame.transform.scale(pygame.image.load('data/water.png'),(150,150)),(10,10))
         self.screen.blit(pygame.transform.scale(pygame.image.load('data/shovel.png'),(70,70)),(50,150))
@@ -93,3 +97,10 @@ class Game:
     def next_state(self):
         # Determine if the state should change
         return None
+
+    def get_water(self):
+        self.water_count = self.player.get_water()
+        return self.water_count 
+    def get_dig(self):
+        self.dig_count = self.player.get_dig()
+        return self.dig_count 
