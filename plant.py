@@ -56,8 +56,8 @@ class Plant:
         self.update_health()
 
     def draw(self):
-        self.draw_health_bar(self.screen)
-        if (self.growth_stage > 0 and self.is_dead is False):
+        if (self.growth_stage > 1 and self.is_dead is False):
+            self.draw_health_bar(self.screen)
             self.screen.blit(self.image, self.rect)
 
     def update_health(self, amount=0):
@@ -85,7 +85,6 @@ class Plant:
         if self.is_ready_for_harvest:
             # Perform harvesting action (e.g., increase player's resources)
             points = 5 *self.rate
-
 
     def get_points(self):
         return self.plant_points
