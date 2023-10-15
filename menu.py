@@ -7,11 +7,11 @@ class Menu:
         self.screen_width, self.screen_height = pygame.display.get_surface().get_size()
         font_path = r'data\LycheeSoda.ttf'
         self.font = pygame.font.Font(font_path, 36)
-        self.button_y = 100
+        self.button_y = 400
         self.button_width = 300
         self.button_height = 75
         self.button_color = (255, 0, 0)  # Red color for the button
-        self.button_list = ['New Game', 'Settings', 'Exit Game', 'Instructions', 'Shop']
+        self.button_list = ['New Game', 'Settings', 'Exit Game', 'Instructions']
         self.button_x = self.screen_width/2 - (self.button_width/2)
         self.nstate = None
 
@@ -33,8 +33,8 @@ class Menu:
                         elif button_text == 'Instructions':
                             self.nstate = Instructions(self.screen)
                             # return "instructions"  # Transition to the settings state
-                        elif button_text == 'Shop':
-                            self.nstate = 'shop'
+                        # elif button_text == 'Shop':
+                        #     self.nstate = 'shop'
                             # return "shop"  # Transition to the settings state
                         elif button_text == 'Exit Game':
                             pygame.quit()
@@ -47,7 +47,8 @@ class Menu:
     def draw(self):
         # Draw the menu-specific elements
         self.screen.fill((0, 0, 128))  # Navy background color
-
+        title = pygame.font.Font(r'data\LycheeSoda.ttf', 100).render('Asteroid Arboretum', True, (255, 255, 255) )
+        self.screen.blit( title, (self.button_x- title.get_width()/4, 150))
         for i, button_text in enumerate(self.button_list):
             button_rect = pygame.draw.rect(self.screen, self.button_color, (self.button_x, self.button_y + 100 * i, self.button_width, self.button_height))
             text = self.font.render(button_text, True, (255, 255, 255))
