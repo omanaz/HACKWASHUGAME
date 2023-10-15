@@ -22,6 +22,7 @@ class Plant:
         # self.is_fertilized = True
         self.plant_type = plant_type
         self.plant_points = 0
+        self.is_dead == False 
 
     def draw_health_bar(self, screen):
         # Calculate the width of the health bar based on the plant's health
