@@ -56,7 +56,8 @@ class Plant:
         self.update_health()
 
     def draw(self):
-        if self.growth_stage > 0:
+        self.draw_health_bar(self.screen)
+        if (self.growth_stage > 0 and self.is_dead is False):
             self.screen.blit(self.image, self.rect)
 
     def update_health(self, amount=0):
