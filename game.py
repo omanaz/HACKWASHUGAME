@@ -28,12 +28,10 @@ class Game:
             if event.button == 1:  # Left mouse button
                 mouse_x, mouse_y = pygame.mouse.get_pos()
                 end_turn_button_rect = pygame.Rect(self.screen_width - 150, 10, 140, 40)
-
+                menu_button_rect = pygame.Rect(self.screen_width - 150, 100, 140, 40)
                 if end_turn_button_rect.collidepoint(mouse_x, mouse_y):
                     # The mouse click occurred within the "End Turn" button
                     print("End Turn")
-
-                    
 
                     self.turn_count += 1
                     if self.turn_count <= 10:
@@ -52,6 +50,8 @@ class Game:
                         self.sunx = 150
                         self.suny = 30
                         return True
+                elif menu_button_rect.collidepoint(mouse_x,mouse_y):
+                    return 'menu'
                 else:
                     self.player.handle_click(mouse_x,mouse_y)
         #add function to handle end turn button click
@@ -84,6 +84,12 @@ class Game:
         font = pygame.font.Font(None, 36)
         text = font.render("End Turn", True, white)
         text_rect = text.get_rect(center=end_turn_button.center)
+        self.screen.blit(text, text_rect)
+
+        menu_button = pygame.draw.rect(self.screen, (0, 128, 0), (self.screen_width - 150, 100, 140, 40))
+        font = pygame.font.Font(None, 36)
+        text = font.render("Menu", True, white)
+        text_rect = text.get_rect(center=menu_button.center)
         self.screen.blit(text, text_rect)
 
         # Draw turn counter to the left of the "End Turn" button
