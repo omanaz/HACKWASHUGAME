@@ -29,6 +29,9 @@ class Game:
                 if end_turn_button_rect.collidepoint(mouse_x, mouse_y):
                     # The mouse click occurred within the "End Turn" button
                     print("End Turn")
+
+                    
+
                     self.turn_count += 1
                     if self.turn_count <= 10:
                         self.water_count = 3
