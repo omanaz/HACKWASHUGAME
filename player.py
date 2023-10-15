@@ -86,7 +86,15 @@ class Player(pygame.sprite.Sprite):
 
        
         if keys[pygame.K_w]:
-            pass
+            if self.water_count >0:
+                self.water_count -=1
+                for plant in self.plants:
+                    x = plant.x
+                    y = plant.y
+                    if self.x+100 > x-100 and self.x+100 < x+100:
+                        if self.y+10 > y-100 and self.y+10 < y+100:
+                            plant.water()
+
             # for i in self.hole_list:
             #     x,y = i
             #     if not self.x+100 > x-100 and self.x+100 < x+100:

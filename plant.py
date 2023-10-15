@@ -16,7 +16,7 @@ class Plant:
         self.image = pygame.transform.scale(pygame.image.load('data\\plants\\' +str(plant_type)+'.png'), (40, 40))
         # self.image.fill((0, 255, 0))  # Green color for a healthy plant
         self.rect = self.image.get_rect()
-        self.rect.topleft = (x, y)
+        self.rect.topleft = (x+100, y-10)
         self.age = 0 #age of the plant in turns 
         self.days_since_water = 0
         # self.is_fertilized = True
@@ -109,5 +109,7 @@ class Plant:
     def get_points(self):
         return self.plant_points
 
+    def water(self):
+        self.days_since_water = 0
             #clear plant and grow spot out of picture
  
