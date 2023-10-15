@@ -1,7 +1,7 @@
 import pygame
 import random
 from player import Player
-# from game_over import Game_Over
+from game_over import GameOver
 # from plant import Plant
 
 class Game:
@@ -52,8 +52,8 @@ class Game:
                         self.sunx = 150
                         self.suny = 30
                         self.player.get_points()
-                        self.nstate = ''
-                        # self.nstate = Game_Over(self.screen, self.player.get_points())
+                        # self.nstate = ''
+                        self.nstate = GameOver(self.screen, self.player.get_points())
                         return True
                 elif menu_button_rect.collidepoint(mouse_x,mouse_y):
                     self.nstate = 'menu'

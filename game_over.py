@@ -5,13 +5,14 @@ from pygame_gui.elements import UIButton
 class GameOver:
     def __init__(self, screen, points):
         self.screen = screen
+        self.screen_width, self.screen_height = pygame.display.get_surface().get_size()
         self.points = points 
         font_path = r'data\LycheeSoda.ttf'
         self.font = pygame.font.Font(font_path, 50)
-        self.button_x = self.screen_width/2 - (self.button_width/2)
-        self.button_y = 100
         self.button_width = 300
         self.button_height = 75
+        self.button_x = self.screen_width/2 - (self.button_width/2)
+        self.button_y = 100
         self.button_color = (255, 0, 0)  # Red color for the button
         self.button_list = ['New Game','Menu','Exit Game']
 
@@ -40,6 +41,7 @@ class GameOver:
         
     def draw(self):
         # Draw the menu-specific elements
+        white = (255,255,255)
         game_over_text = self.font.render("Game Over", True, white)
 
         text_x = self.screen_width // 2 - game_over_text.get_width() // 2
